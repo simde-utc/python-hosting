@@ -8,6 +8,7 @@ ROOT_ASSO = os.path.abspath(os.path.join(ROOT, 'sites-enabled', asso))
 
 workers = 3
 accesslog = "-" # write access logs in stderr
+max_requests = 100 # maximum number of request before the worker is restarted, 0 for unlimited
 
 bind = 'unix:'+os.path.join(ROOT_ASSO, 'wsgi.sock')
 pidfile = os.path.join(ROOT_ASSO, 'gunicorn.pid')
