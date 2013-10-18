@@ -2,7 +2,7 @@ import sys
 import os
 import subprocess
 
-asso = subprocess.check_output('whoami').strip()
+asso = subprocess.check_output('whoami').strip().decode()
 ROOT = os.path.abspath(os.path.dirname(__file__))
 ROOT_ASSO = os.path.abspath(os.path.join(ROOT, 'sites-enabled', asso))
 
