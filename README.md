@@ -22,14 +22,12 @@ enable a site
 
     python -c "import manage; manage.enable_site(mysite)"
     supervisorctl reload
-    nginx reload
 
 disable a site
 --------------
 
     python -c "import manage; manage.disable_site(mysite)"
     supervisorctl reload
-    nginx reload
 
 
 

@@ -23,7 +23,7 @@ def enable_site(site):
 		print "%s does not exist" % site
 	else:
 		sh.ln('-s', av, en)
-		print "Successfully enabled %s, restart nginx and supervisord" % site
+		print "Successfully enabled %s, restart supervisord" % site
 
 def disable_site(site):
 	en = loc_site_enabled(site)
@@ -31,5 +31,5 @@ def disable_site(site):
 		print "%s is not enabled" % site
 	else:
 		sh.rm(en)
-		print "Successfully disabled %s, restart nginx and supervisord" % site
+		print "Successfully disabled %s, restart supervisord" % site
 
