@@ -12,22 +12,18 @@ create new site
 ---------------
 
 1. create a user 'newuser'
-2. `cp sites-available/sample sites-available/newuser`
-3. change occurences of 'sample' with 'newuser' and adapt the configs if necessary
-4. `cp data/sample data/newuser`, only the files env.sh and app.py are required, they have to be adapted
+2. `./manage.py newuser create`
 
 
 enable a site
 -------------
 
-    python -c "import manage; manage.enable_site(mysite)"
-    supervisorctl reload
+`./manage.py newuser enable`
 
 disable a site
 --------------
 
-    python -c "import manage; manage.disable_site(mysite)"
-    supervisorctl reload
+`./manage.py newuser disable`
 
 
 
