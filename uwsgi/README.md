@@ -13,3 +13,9 @@ http://uwsgi-docs.readthedocs.org/en/latest/Configuration.html
 
 http://uwsgi-docs.readthedocs.org/en/latest/ConfigLogic.html
 
+
+http://projects.unbit.it/uwsgi/wiki/Guide4Packagers
+
+`python uwsgi --build core`
+
+
