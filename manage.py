@@ -8,9 +8,12 @@ ROOT = os.path.abspath(os.path.dirname(__file__))
 ROOT_DATA = os.path.join(ROOT, 'data')
 ROOT_SITES = os.path.join(ROOT, 'sites')
 ROOT_UWSGI = os.path.join(ROOT, 'uwsgi')
+ROOT_TEMPLATES = os.path.join(ROOT, 'templates')
 ROOT_UWSGI_CONF = os.path.join(ROOT_UWSGI, 'conf')
 UWSGI_CONF_VASSAL = os.path.join(ROOT_UWSGI_CONF, 'vassal.ini')
 ROOT_UWSGI_VASSALS = os.path.join(ROOT_UWSGI, 'vassals')
+DATA_TEMPLATE_PATH = os.path.join(ROOT_TEMPLATES, 'data')
+SITE_TEMPLATE_PATH = os.path.join(ROOT_TEMPLATES, 'site')
 
 def loc_site_data(site):
     return os.path.join(ROOT_DATA, site)
@@ -29,7 +32,7 @@ def create_site(site):
     if os.path.exists(sd):
         print 'Already existing'
     else:
-        sh.cp('-an', loc_site_data('sample'), sd)
+        sh.cp('-an', DATA_TEMPLATE_PATH, sd)
         sh.chown('-R', site+':'+site, sd)
         print "OK"
     
@@ -37,7 +40,7 @@ def create_site(site):
     if os.path.exists(ss):
         print 'Already existing'
     else:
-        sh.cp('-an', loc_site_site('sample'), ss)
+        sh.cp('-an', SITE_TEMPLATE_PATH, ss)
         sh.chown('-R', site+':'+site, ss)
         print "OK"
 
@@ -51,7 +54,7 @@ def enable_site(site):
         print "%s is already enabled" % site
     else:
         sh.ln('-s', UWSGI_CONF_VASSAL, uc)
-        print "Successfully enabled %s, restart supervisord" % site
+        print "Successfully enabled %s" % site
 
 def disable_site(site):
     uc = loc_uwsgi_conf(site)
