@@ -1,7 +1,7 @@
 python-hosting
 ==============
 
-Serve multiple wsgi application with nginx and gunicorn.
+Serve multiple wsgi application with nginx and uwsgi.
 
 application isolation
 ---------------------

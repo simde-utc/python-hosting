@@ -1,0 +1,19 @@
+server {
+    listen       4444;
+    server_name  localhost;
+    
+    location ~ ^/([a-z]+)/static/ {
+        root <%root%>/data/;
+    }
+    
+    location ~ ^/([a-z]+)/media/ {
+        root <%root%>/data/;
+    }
+    
+    location ~ ^/([a-z]+)/ {
+        include uwsgi_params;
+        uwsgi_param SCRIPT_NAME /$1;
+        uwsgi_modifier1 30;
+        uwsgi_pass unix:<%root%>/sites/$1/wsgi.sock;
+    }
+}
