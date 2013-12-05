@@ -35,4 +35,5 @@ nosetests.xml
 *.log
 *.sock
 /uwsgi/vassals/*.ini
-
+/sites/
+/data/
