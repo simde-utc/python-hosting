@@ -1,11 +1,9 @@
-Site directory
-===============
 
-This is a container for stuffs related to one site...
+All site folders must have a virtualenv `envpyX` and a py module `app` with
+an `application` inside.
 
-* wsgi.sock: unix socket for nginx
-* stats.sock: socket for the stat server, see `uwsgitop`
-* uwsgi.pid: uwsgi pid file
-* logs: the logs
+To make this sample work create a virtualenv :
 
+`virtualenv envpy2` if you want to use python2 or `virtualenv -p python3 envpy3` if
+you want to use python3.
 

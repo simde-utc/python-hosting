@@ -5,50 +5,35 @@ import os
 import sh
 
 ROOT = os.path.abspath(os.path.dirname(__file__))
-ROOT_DATA = os.path.join(ROOT, 'data')
 ROOT_SITES = os.path.join(ROOT, 'sites')
 ROOT_UWSGI = os.path.join(ROOT, 'uwsgi')
 ROOT_TEMPLATES = os.path.join(ROOT, 'templates')
 ROOT_UWSGI_CONF = os.path.join(ROOT_UWSGI, 'conf')
 UWSGI_CONF_VASSAL = os.path.join(ROOT_UWSGI_CONF, 'vassal.ini')
 ROOT_UWSGI_VASSALS = os.path.join(ROOT_UWSGI, 'vassals')
-DATA_TEMPLATE_PATH = os.path.join(ROOT_TEMPLATES, 'data')
 SITE_TEMPLATE_PATH = os.path.join(ROOT_TEMPLATES, 'site')
 
-def loc_site_data(site):
-    return os.path.join(ROOT_DATA, site)
-
-def loc_site_site(site):
+def loc_site(site):
     return os.path.join(ROOT_SITES, site)
 
 def loc_uwsgi_conf(site):
     return os.path.join(ROOT_UWSGI_VASSALS, site+'.ini')
 
 def create_site(site):
-    sd = loc_site_data(site)
-    ss = loc_site_site(site)
-    
-    print "Create data dir for %s..." % site,
-    if os.path.exists(sd):
-        print 'Already existing'
-    else:
-        sh.cp('-an', DATA_TEMPLATE_PATH, sd)
-        sh.chown('-R', site+':'+site, sd)
-        print "OK"
-    
+    ss = loc_site(site)
     print "Create site dir for %s..." % site,
     if os.path.exists(ss):
         print 'Already existing'
+        sh.chown('-R', site+':'+site, ss)
     else:
-        sh.cp('-an', SITE_TEMPLATE_PATH, ss)
+        sh.cp('-a', SITE_TEMPLATE_PATH, ss)
         sh.chown('-R', site+':'+site, ss)
         print "OK"
 
 def enable_site(site):
     uc = loc_uwsgi_conf(site)
-    sd = loc_site_data(site)
-    ss = loc_site_site(site)
-    if not os.path.exists(sd) or not os.path.exists(ss):
+    ss = loc_site(site)
+    if not os.path.exists(ss):
         print "%s does not exist" % site
     elif os.path.exists(uc):
         print "%s is already enabled" % site
@@ -72,8 +57,7 @@ if __name__ == "__main__":
         print "Usage: ./manage.py <site> <command>"
         exit(1)
     if sh.whoami().strip() != 'root':
-        print sh.whoami()
-        print "You must be root !"
+        print sh.whoami().strip(), "you must be root !"
         exit(1)
     site,cmd = sys.argv[1::]
     func = locals()[cmd+'_site']
