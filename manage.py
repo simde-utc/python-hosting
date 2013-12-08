@@ -5,7 +5,8 @@ import os
 import sh
 
 ROOT = os.path.abspath(os.path.dirname(__file__))
-ROOT_SITES = os.path.join(ROOT, 'sites')
+ROOT_CONF = os.path.join(ROOT, 'conf')
+SITES_PATH_PATH = os.path.join(ROOT_CONF, 'sites_path.txt')
 ROOT_UWSGI = os.path.join(ROOT, 'uwsgi')
 ROOT_TEMPLATES = os.path.join(ROOT, 'templates')
 ROOT_UWSGI_CONF = os.path.join(ROOT_UWSGI, 'conf')
@@ -14,7 +15,8 @@ ROOT_UWSGI_VASSALS = os.path.join(ROOT_UWSGI, 'vassals')
 SITE_TEMPLATE_PATH = os.path.join(ROOT_TEMPLATES, 'site')
 
 def loc_site(site):
-    return os.path.join(ROOT_SITES, site)
+    sites_path = open(SITES_PATH_PATH).read()
+    return os.path.join(sites_path, site)
 
 def loc_uwsgi_conf(site):
     return os.path.join(ROOT_UWSGI_VASSALS, site+'.ini')
