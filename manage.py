@@ -23,14 +23,20 @@ def loc_uwsgi_conf(site):
 
 def create_site(site):
     ss = loc_site(site)
+    gid = 'web'
     print "Create site dir for %s..." % site,
     if os.path.exists(ss):
         print 'Already existing'
-        sh.chown('-R', site+':web', ss)
     else:
         sh.cp('-a', SITE_TEMPLATE_PATH, ss)
-        sh.chown('-R', site+':web', ss)
         print "OK"
+    print 'chown %s:%s %s ...' % (site, gid, ss),
+    sh.chown('-R', '%s:%s' % (site, gid), ss)
+    print 'Ok'
+    print 'chmod 2750 %s ...' % ss,
+    sh.chmod('2750', ss)
+    print 'Ok'
+    
 
 def enable_site(site):
     uc = loc_uwsgi_conf(site)
