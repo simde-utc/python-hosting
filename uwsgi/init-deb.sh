@@ -29,7 +29,7 @@ set -e
 
 . /lib/lsb/init-functions
 
-DAEMON_OPTS="-d /var/log/uwsgi.log /usr/local/python-hosting/uwsgi/conf/emperor.ini"
+DAEMON_OPTS="-d /var/log/uwsgi.log /root/python-hosting/uwsgi/conf/emperor.ini"
 
 case "$1" in
   start)
