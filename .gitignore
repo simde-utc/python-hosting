@@ -37,3 +37,7 @@ nosetests.xml
 /uwsgi/vassals/*.ini
 /sites/
 /data/
+/conf/*.txt
+
+
+

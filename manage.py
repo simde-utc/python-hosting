@@ -24,10 +24,10 @@ def create_site(site):
     print "Create site dir for %s..." % site,
     if os.path.exists(ss):
         print 'Already existing'
-        sh.chown('-R', site+':'+site, ss)
+        sh.chown('-R', site+':web', ss)
     else:
         sh.cp('-a', SITE_TEMPLATE_PATH, ss)
-        sh.chown('-R', site+':'+site, ss)
+        sh.chown('-R', site+':web', ss)
         print "OK"
 
 def enable_site(site):
