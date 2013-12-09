@@ -66,22 +66,37 @@ def check_directory(path, mode, uid, gid):
                     #traceback.print_exc()
                     print e
 
+
 def check_site(path):
     site = path.strip(os.sep).split(os.sep)[-1]
     print 'Check %s %s' % (site, path)
     try:
-        check_mode(path, '02750')
+        check_mode(path, '02755')
         check_uid(path, site)
-        check_gid(path, 'web')
     except Exception as e:
         #traceback.print_exc()
         print e
-    required = ('static', 'wsgi', 'app.py')
-    files = os.listdir(path)
-    for r in required:
-        if r not in files:
-            print 'Missing file or dir %r' % r
-    check_directory(os.path.join(path, 'static'), '2750', site, 'web')
+    app_dir = os.path.join(path, 'app')
+    if not os.path.exists(app_dir):
+        print 'Missing app dir'
+    else:
+        try:
+            check_mode(app_dir, '02700')
+            check_uid(app_dir, site)
+        except Exception as e:
+            #traceback.print_exc()
+            print e
+    static_dir = os.path.join(path, 'static')
+    if not os.path.exists(static_dir):
+        print 'Missing static dir'
+    else:
+        try:
+            check_mode(static_dir, '02750')
+            check_uid(static_dir, site)
+        except Exception as e:
+            #traceback.print_exc()
+            print e
+        check_directory(static_dir, '2750', site, 'web')
 
 def check_sites(path):
     for row in os.listdir(path):
