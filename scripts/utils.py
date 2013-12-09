@@ -15,6 +15,15 @@ PATH_VASSAL_TEMPLATE = os.path.join(ROOT_TEMPLATES, 'vassal.ini')
 PATH_SITES_PATH = os.path.join(ROOT_CONF, 'sites_path.txt')
 PATH_VASSAL_CONF = os.path.join(ROOT_UWSGI_CONF, 'vassal.ini')
 
+
+def loc_site(site):
+    sites_path = open(PATH_SITES_PATH).read()
+    return os.path.join(sites_path, site)
+
+def loc_uwsgi_conf(site):
+    return os.path.join(ROOT_UWSGI_VASSALS, site+'.ini')
+
+
 def _ask_root_sites():
     def ask_sites_path():
         return os.path.abspath(raw_input('Absolute path to site directory: '))
