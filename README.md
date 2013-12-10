@@ -21,6 +21,13 @@ Setup
 * python
 * uwsgi core under /usr/bin
 
+### Compile uwsgi
+
+    wget http://projects.unbit.it/downloads/uwsgi-X.Y.Z.tar.gz
+    tar xvf uwsgi-*.tar.gz
+    cd uwsgi-*
+    python --build core
+
 ### Setup python hosting
 
 Run `./scripts/setup.py`.
