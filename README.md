@@ -28,6 +28,11 @@ Setup
     cd uwsgi-*
     python --build core
 
+### Compile uwsgi python plugins
+
+    python2 uwsgiconfig.py --plugin plugins/python core python2
+    python3 uwsgiconfig.py --plugin plugins/python core python3
+
 ### Setup python hosting
 
 Run `./scripts/setup.py`.
@@ -58,6 +63,9 @@ Manage sites
 
 `./manage.py newuser disable`
 
+### check environment
 
+You may want to check if the folder struct and the permissions are well
+set for the sites, just run the script `./scripts/check_environment.py`.
 
 
