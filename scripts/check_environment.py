@@ -71,7 +71,7 @@ def check_site(path):
     site = path.strip(os.sep).split(os.sep)[-1]
     print 'Check %s %s' % (site, path)
     try:
-        check_mode(path, '02755')
+        check_mode(path, '0755')
         check_uid(path, site)
     except Exception as e:
         #traceback.print_exc()
@@ -81,7 +81,7 @@ def check_site(path):
         print 'Missing app dir'
     else:
         try:
-            check_mode(app_dir, '02700')
+            check_mode(app_dir, '0700')
             check_uid(app_dir, site)
         except Exception as e:
             #traceback.print_exc()
