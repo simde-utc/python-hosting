@@ -56,7 +56,7 @@ def enable_site(site):
     elif os.path.exists(uc):
         print "%s is already enabled" % site
     else:
-        sh.ln('-s', UWSGI_CONF_VASSAL, uc)
+        sh.ln('-s', PATH_VASSAL_CONF, uc)
         print "Successfully enabled %s" % site
 
 def disable_site(site):
