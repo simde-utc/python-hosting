@@ -23,10 +23,11 @@ Setup
 
 ### Compile uwsgi
 
-    wget http://projects.unbit.it/downloads/uwsgi-X.Y.Z.tar.gz
-    tar xvf uwsgi-*.tar.gz
-    cd uwsgi-*
-    python --build core
+    git clone https://github.com/unbit/uwsgi.git
+    cd uwsgi
+    git tag
+    git checkout tags/<tagname>    
+    python uwsgiconfig.py --build core
 
 ### Compile uwsgi python plugins
 
